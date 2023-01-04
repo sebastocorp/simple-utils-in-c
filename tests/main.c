@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+
+#define SU_TESTING_IMPLEMENTATION
+#include "../src/su_testing.h"
+
 #include "susv/susv_test.c"
 
 void (*susv_tests[])(test_t* t) = {
@@ -17,8 +21,6 @@ void (*susv_tests[])(test_t* t) = {
 
 int main(int argc, char const* argv[])
 {
-    (void) argc;
-    (void) argv;
     size_t length = sizeof(susv_tests)/sizeof(susv_tests[0]);
 
     test_t t = {
