@@ -2,7 +2,7 @@ CC := gcc
 CFILE := main.c
 CSTD := -std=c18
 COPS := -O0
-CWARN := -Wall -Wextra -Werror -pedantic -Wconversion
+CWARN := -Wall -Wextra -Wconversion -Wpedantic -Werror
 CDEF :=
 CLIBS :=
 CFLAGS := $(CSTD) $(COPS) $(CWARN) $(CDEF) $(CLIBS)

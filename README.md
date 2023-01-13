@@ -16,18 +16,14 @@ and the [Golang standard libraries](https://pkg.go.dev/std).
 ## Usage
 
 This collection of libraries are developed in [stb-style](https://github.com/nothings/stb) (header-only library), This 
-means that you can find the declaration and definition of the structures and functions in the header.
+means that you can find the declaration and definition of the structures and functions in the header file.
 
 To use the library only as a header you have to include as usual.
-
-Example:
 ```c
 #include "su_string_view.h"
 ```
 
 To include the definitions of the library you have to define the specified macro in the library.
-
-Example:
 ```c
 #define SU_STRING_VIEW_IMPLEMENTATION
 #include "su_string_view.h"

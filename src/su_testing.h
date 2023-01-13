@@ -1,16 +1,9 @@
 #ifndef INCLUDE_SU_TESTING_H
 #define INCLUDE_SU_TESTING_H
+#include <stddef.h>
 #include <stdbool.h>
 
 typedef struct test test_t;
-
-void test_check_current_case_condition(test_t* t, bool condition);
-void test_check_current_test_percentage(test_t* t, size_t percentage);
-void test_check_test_percentage(test_t* t, size_t percentage);
-
-#endif //INCLUDE_SU_TESTING_H
-
-#ifdef SU_TESTING_IMPLEMENTATION
 
 struct test {
     const char* name;
@@ -29,6 +22,14 @@ struct test {
         } current_case;
     } current_test;
 };
+
+void test_check_current_case_condition(test_t* t, bool condition);
+void test_check_current_test_percentage(test_t* t, size_t percentage);
+void test_check_test_percentage(test_t* t, size_t percentage);
+
+#endif //INCLUDE_SU_TESTING_H
+
+#ifdef SU_TESTING_IMPLEMENTATION
 
 void test_check_current_case_condition(test_t* t, bool condition)
 {
