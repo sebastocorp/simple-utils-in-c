@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define SU_TESTING_IMPLEMENTATION
-#include "../src/su_testing.c"
-
-#include "susv/susv_test.c"
+#include "susv/susv_test.h"
 
 void (*susv_tests[])(test_t* t) = {
         susv_sv_construct_test,
@@ -29,7 +26,7 @@ int main(int argc, char const* argv[])
 
     if (argc > 1) {
         for (int i = 1; i < argc; ++i) {
-            if (strcmp(*argv, "--verbose")) t.verbose = true;
+            if (strcmp(*argv, "--verbose") == 0) t.verbose = true;
         }
     }
 

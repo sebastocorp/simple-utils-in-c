@@ -1,23 +1,24 @@
 #include <stdio.h>
 
+#if 0
+
 #define HT_TABLE_LENGTH 5
 #define HT_KEY_LENGTH 20
-#define SDS_IMPLEMENTATION
 
-#include "../../src/su_data_structures.c"
+#include <su_data_structures.h>
 
 #define UNUSED(x) (void) x;
 #define VAR_NAME(var) #var
 
-SDS_HT_DECLARATION_TEMPLATE(int)
+//SDS_HT_DECLARATION_TEMPLATE(int);
 
 int main(int argc, char const *argv[]) {
     UNUSED(argc)
     UNUSED(argv)
-    SDS_HT_NODE_TYPE(int) t;
-    SDS_HT_TYPE(int) ht;
-    UNUSED(t)
-    UNUSED(ht)
+    //SDS_HT_NODE_TYPE(int) t;
+    //SDS_HT_TYPE(int) ht;
+    //UNUSED(t)
+    //UNUSED(ht)
 
 
     ht_t table;
@@ -72,3 +73,5 @@ int main(int argc, char const *argv[]) {
 
     return 0;
 }
+
+#endif
