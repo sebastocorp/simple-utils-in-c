@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define SU_TESTING_IMPLEMENTATION
-#include "../src/su_testing.c"
-
-#include "susv/susv_test.c"
+#include "susv/susv_test.h"
 
 void (*susv_tests[])(test_t* t) = {
         susv_sv_construct_test,

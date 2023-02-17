@@ -1,16 +1,20 @@
-#include <unistd.h>
 #include <stdint.h>
 
-#include "../../src/su_show_memory.c"
+#include <su_show_memory.h>
+#if 0
 
 int main(int argc,char **argv)
 {
+    (void) argc;
+    (void) argv;
     char str[6] = "HELLO";
     uint64_t num = 0xffffffff;
     show_mem(&num, 17);
     (void) str;
     return 0;
 }
+
+#endif
 /*
 #include <stdio.h>
 

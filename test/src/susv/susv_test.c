@@ -1,7 +1,9 @@
 #include <string.h>
 
-#define SU_STRING_VIEW_IMPLEMENTATION
-#include "../../src/su_string_view.c"
+#include <su_testing.h>
+#include <su_string_view.h>
+
+#include "susv_test.h"
 
 void susv_sv_construct_test(test_t* t)
 {
