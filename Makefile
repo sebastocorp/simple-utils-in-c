@@ -15,26 +15,29 @@ SRC_FILES :=$(shell find $(SRC_DIR) -type f -iname *.c)
 OBJ_FILES :=$(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(patsubst %.c,%.o,$(SRC_FILES)))
 
 # Project binaries
-BIN_NAME:=binary
+#BIN_NAME:=binary
+STATIC_LIB_NAME :=libsu.a
+DYNAMIC_LIB_NAME:=$(patsubst %.a,%.so,$(STATIC_LIB_NAME))
 
 # Project compiler variables
-C:=gcc
+CC:=gcc
 # Compiler flags
-C_OPS      :=-g
+CC_OPS      :=-g
 ifdef RELEASE
-	C_OPS=-O3
+	CC_OPS=-O3
 endif
-C_STD      :=-std=c18
-C_INCLUDES :=-I$(INCLUDE_DIR) -I$(LIB_DIR)
-C_WARN     :=-Wall -Wextra -Wconversion -Wpedantic -Werror
-C_DEBUG    :=-g -fsanitize=address
-C_FLAGS    :=$(C_OPS) $(C_STD) $(C_WARN) $(C_INCLUDES)
+CC_STD       :=-std=c18
+CC_DLIB_FLAG :=-fPIC
+CC_INCLUDES  :=-I$(INCLUDE_DIR) -I$(LIB_DIR)
+CC_WARN      :=-Wall -Wextra -Wconversion -Wpedantic -Werror
+CC_DEBUG     :=-g -fsanitize=address
+CC_FLAGS     :=$(CC_OPS) $(CC_DLIB_FLAG) $(CC_STD) $(CC_WARN) $(CC_INCLUDES)
 # Linker flags
-C_LIBS_PATHS :=-L./$(LIB_DIR)
-C_LIBS       :=#-l:example.a -lX11
-C_LDFLAGS    :=$(C_LIBS_PATHS) $(C_LIBS)
+LD_LIBS_PATHS :=#-L./$(LIB_DIR)
+LD_LIBS       :=#-l:example.a -lX11
+LD_FLAGS    :=$(LD_LIBS_PATHS) $(LD_LIBS)
 ifdef SANITIZE
-	C_LDFLAGS+=-fsanitize=address
+	LD_FLAGS+=-fsanitize=address
 endif
 
 # Exports
@@ -64,16 +67,23 @@ clean-all: clean-build clean-objs
 ########################################################################################################################
 .PHONY: build build-dirs clean-build
 
-build: objs build-dirs $(BUILD_DIR)/$(BIN_NAME)
+build: objs build-dirs $(BUILD_DIR)/lib/$(STATIC_LIB_NAME) $(BUILD_DIR)/lib/$(DYNAMIC_LIB_NAME) #$(BUILD_DIR)/$(BIN_NAME)
+	cp -r include build
 
 build-dirs:
-	mkdir --parents $(BUILD_DIR)
+	mkdir --parents $(BUILD_DIR)/lib
 
 clean-build:
 	rm -r ./$(BUILD_DIR) || true
 
-$(BUILD_DIR)/$(BIN_NAME): $(OBJ_FILES)
-	$(C) -o $@ $^ $(C_LDFLAGS)
+#$(BUILD_DIR)/$(BIN_NAME): $(OBJ_FILES)
+#	$(CC) -o $@ $^ $(LD_FLAGS)
+
+$(BUILD_DIR)/lib/$(STATIC_LIB_NAME): $(OBJ_FILES)
+	ar rc $@ $^
+
+$(BUILD_DIR)/lib/$(DYNAMIC_LIB_NAME): $(OBJ_FILES)
+	$(CC) -o $@ $^ $(LD_FLAGS) -shared
 
 ########################################################################################################################
 ### OBJS
@@ -89,7 +99,7 @@ clean-objs:
 	rm -r ./$(OBJ_DIR) || true
 
 $(OBJ_FILES): $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(C) -o $@ $< -c $(C_FLAGS)
+	$(CC) -o $@ $< -c $(CC_FLAGS)
 
 ########################################################################################################################
 ### LIBRARIES

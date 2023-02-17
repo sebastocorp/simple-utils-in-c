@@ -80,8 +80,3 @@ void vector_swap(vector_t* const v, vector_t* const other);
 
 
 #endif // INCLUDE_SU_VECTOR_H
-
-#ifdef SU_VECTOR_IMPLEMENTATION
-
-
-#endif // SU_VECTOR_IMPLEMENTATION

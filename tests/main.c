@@ -2,7 +2,7 @@
 #include <string.h>
 
 #define SU_TESTING_IMPLEMENTATION
-#include "../src/su_testing.h"
+#include "../src/su_testing.c"
 
 #include "susv/susv_test.c"
 

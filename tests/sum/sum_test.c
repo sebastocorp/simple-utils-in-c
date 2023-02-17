@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <stdint.h>
 
-#include "../../src/su_show_memory.h"
+#include "../../src/su_show_memory.c"
 
 int main(int argc,char **argv)
 {

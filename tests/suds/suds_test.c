@@ -4,7 +4,7 @@
 #define HT_KEY_LENGTH 20
 #define SDS_IMPLEMENTATION
 
-#include "../../src/su_data_structures.h"
+#include "../../src/su_data_structures.c"
 
 #define UNUSED(x) (void) x;
 #define VAR_NAME(var) #var
