@@ -1,24 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "susv/susv_test.h"
-
-void (*susv_tests[])(test_t* t) = {
-        susv_sv_construct_test,
-        susv_sv_cstr_construct_test,
-        susv_sv_trim_left_test,
-        susv_sv_trim_right_test,
-        susv_sv_trim_test,
-        susv_sv_remove_left_test,
-        susv_sv_remove_right_test,
-        susv_sv_chop_left_test,
-        susv_sv_chop_right_test,
-        susv_sv_equal_test,
-};
+#include "simple-utils/std/string_view_test.h"
 
 int main(int argc, char const* argv[])
 {
-    size_t length = sizeof(susv_tests)/sizeof(susv_tests[0]);
+    size_t length = sizeof(string_view_tests)/sizeof(string_view_tests[0]);
 
     test_t t = {
             .verbose = false,
@@ -26,18 +13,18 @@ int main(int argc, char const* argv[])
 
     if (argc > 1) {
         for (int i = 1; i < argc; ++i) {
-            if (strcmp(*argv, "--verbose") == 0) t.verbose = true;
+            if (strcmp(*argv, "--verbose") >= 0) t.verbose = true;
         }
     }
 
     fprintf(stdout, "################################################################################\n");
-    t.name = "su_string_view";
+    t.name = "string_view";
     fprintf(stdout, "### TESTING MODULE: %s\n", t.name);
     fprintf(stdout, "################################################################################\n");
     for (size_t i = 0; i < length; ++i) {
         t.current_test.total = 0;
         t.current_test.passed = 0;
-        susv_tests[i](&t);
+        string_view_tests[i](&t);
         t.total += t.current_test.total;
         t.passed += t.current_test.passed;
         test_check_current_test_percentage(&t, 100);

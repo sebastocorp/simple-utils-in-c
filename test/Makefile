@@ -33,7 +33,7 @@ CC_WARN      :=-Wall -Wextra -Wconversion -Wpedantic -Werror
 CC_DEBUG     :=-g -fsanitize=address
 CC_FLAGS     :=$(CC_OPS) $(CC_DLIB_FLAG) $(CC_STD) $(CC_WARN) $(CC_INCLUDES)
 # Linker flags
-LD_LIBS_PATHS :=-L../build/$(LIB_DIR)
+LD_LIBS_PATHS :=-L../build/$(LIB_DIR)/simple-utils
 LD_LIBS       :=-lsu
 LD_FLAGS      :=$(LD_LIBS_PATHS) $(LD_LIBS) -static
 ifdef SANITIZE

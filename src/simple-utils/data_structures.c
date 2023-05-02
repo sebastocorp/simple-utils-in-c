@@ -1,4 +1,4 @@
-#include <su_data_structures.h>
+#include <simple-utils/data_structures.h>
 
 #include <stdio.h>
 

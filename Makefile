@@ -16,7 +16,7 @@ OBJ_FILES :=$(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(patsubst %.c,%.o,$(SRC_FILES)))
 
 # Project binaries
 #BIN_NAME:=binary
-STATIC_LIB_NAME :=libsu.a
+STATIC_LIB_NAME :=simple-utils/libsu.a
 DYNAMIC_LIB_NAME:=$(patsubst %.a,%.so,$(STATIC_LIB_NAME))
 
 # Project compiler variables
@@ -71,7 +71,7 @@ build: objs build-dirs $(BUILD_DIR)/lib/$(STATIC_LIB_NAME) $(BUILD_DIR)/lib/$(DY
 	cp -r include build
 
 build-dirs:
-	mkdir --parents $(BUILD_DIR)/lib
+	mkdir --parents $(BUILD_DIR)/lib/simple-utils
 
 clean-build:
 	rm -r ./$(BUILD_DIR) || true

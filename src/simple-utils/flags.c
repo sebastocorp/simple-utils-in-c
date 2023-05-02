@@ -1,4 +1,4 @@
-#include <su_flags.h>
+#include <simple-utils/flags.h>
 
 typedef enum {
     FLAG_BOOL = 0,

@@ -1,10 +1,10 @@
-#include <su_string_view.h>
+#include <simple-utils/std/string_view.h>
 
 #include <string.h>
 
-string_view_t sv_construct(const char* data, size_t size)
+SU_StringView SU_StringView_Construct(const char* data, size_t size)
 {
-    string_view_t sv = {
+    SU_StringView sv = {
         .data = data,
         .size = size,
     };
@@ -12,9 +12,9 @@ string_view_t sv_construct(const char* data, size_t size)
     return sv;
 }
 
-string_view_t sv_cstr_construct(const char* str)
+SU_StringView SU_StringView_Construct1cstr(const char* str)
 {
-        string_view_t sv = {
+    SU_StringView sv = {
         .data = str,
         .size = strlen(str),
     };
@@ -22,7 +22,7 @@ string_view_t sv_cstr_construct(const char* str)
     return sv;
 }
 
-string_view_t sv_trim_left(string_view_t sv)
+SU_StringView SU_StringView_TrimLeft(SU_StringView sv)
 {
     size_t i = 0;
     while(i < sv.size && *(sv.data + i) == ' ') {
@@ -35,7 +35,7 @@ string_view_t sv_trim_left(string_view_t sv)
     return sv;
 }
 
-string_view_t sv_trim_right(string_view_t sv)
+SU_StringView SU_StringView_TrimRight(SU_StringView sv)
 {
     size_t i = 0;
     while(i < sv.size && *(sv.data + sv.size - i - 1) == ' ') {
@@ -47,12 +47,12 @@ string_view_t sv_trim_right(string_view_t sv)
     return sv;
 }
 
-string_view_t sv_trim(string_view_t sv)
+SU_StringView SU_StringView_Trim(SU_StringView sv)
 {
-    return sv_trim_left(sv_trim_right(sv));
+    return SU_StringView_TrimLeft(SU_StringView_TrimRight(sv));
 }
 
-string_view_t sv_remove_left(string_view_t sv, size_t n)
+SU_StringView SU_StringView_RemoveLeft(SU_StringView sv, size_t n)
 {
     if (n > sv.size) {
         n = sv.size;
@@ -64,7 +64,7 @@ string_view_t sv_remove_left(string_view_t sv, size_t n)
     return sv;
 }
 
-string_view_t sv_remove_right(string_view_t sv, size_t n)
+SU_StringView SU_StringView_RemoveRight(SU_StringView sv, size_t n)
 {
     if (n > sv.size) {
         n = sv.size;
@@ -75,7 +75,7 @@ string_view_t sv_remove_right(string_view_t sv, size_t n)
     return sv;
 }
 
-string_view_t sv_chop_left(string_view_t sv, size_t n)
+SU_StringView SU_StringView_ChopLeft(SU_StringView sv, size_t n)
 {
     if (n > sv.size) {
         n = sv.size;
@@ -86,7 +86,7 @@ string_view_t sv_chop_left(string_view_t sv, size_t n)
     return sv;
 }
 
-string_view_t sv_chop_right(string_view_t sv, size_t n)
+SU_StringView SU_StringView_ChopRight(SU_StringView sv, size_t n)
 {
     if (n > sv.size) {
         n = sv.size;
@@ -98,7 +98,7 @@ string_view_t sv_chop_right(string_view_t sv, size_t n)
     return sv;
 }
 
-bool sv_equal(string_view_t sv1, string_view_t sv2)
+bool SU_StringView_Equal(SU_StringView sv1, SU_StringView sv2)
 {
     if (sv1.size != sv2.size) {
         return false;

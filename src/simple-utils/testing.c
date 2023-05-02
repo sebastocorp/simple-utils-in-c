@@ -1,4 +1,4 @@
-#include <su_testing.h>
+#include <simple-utils/testing.h>
 
 #include <stdio.h>
 
